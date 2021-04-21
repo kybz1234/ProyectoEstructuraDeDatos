@@ -5,6 +5,8 @@
  */
 package proyectoestructuradedatos;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Dylan
@@ -54,6 +56,34 @@ public class TiqueteCola {
             }
         }
         
+    }
+    
+    public String mostrar(){
+        if(vacia()){
+            return null;
+        }else{
+            String cola="";
+            NodoCola actual = inicio;
+            while(actual != null){
+                cola += actual.getTiquete().getNumeroTiquete() + " | " + actual.getTiquete().getCedula() + " | " +
+                        actual.getTiquete().getTipoServicio() + " | " + actual.getTiquete().getPrioridad() + "\n";
+                actual = actual.getSiguiente();
+            }
+            return cola;
+        }
+    }
+    
+    public void vaciarCola(){
+        if(vacia()){
+            JOptionPane.showMessageDialog(null, "No hay elementos en la cola");
+        }else{
+            String cola="";
+            NodoCola actual = inicio;
+            while(actual != null){
+                
+                actual = actual.getSiguiente();
+            }
+        }
     }
     
 }
