@@ -19,6 +19,9 @@ public class TiqueteCola {
             return false;
         }
     }
+    
+    
+    
     public void agregar(int numero,String cedula, String servicio, int prioridad){
         NodoCola nuevoDato = new NodoCola(numero,cedula, servicio, prioridad);
         if(vacia()){
@@ -52,4 +55,5 @@ public class TiqueteCola {
         }
         
     }
+    
 }

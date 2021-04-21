@@ -11,6 +11,7 @@ package proyectoestructuradedatos;
  */
 public class Main extends javax.swing.JFrame {
     TiqueteCola cola = new TiqueteCola();
+    int numeroTiquete= 0;
     /**
      * Creates new form Main
      */
@@ -77,7 +78,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
-        cbPrioridad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbPrioridad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mayor de edad", "Embarazada", "Discapacitado" }));
 
         btnEliminar.setText("Eliminar");
         btnEliminar.setToolTipText("");
@@ -97,7 +98,7 @@ public class Main extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(txtNumero, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
+                        .addComponent(txtNumero)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -156,6 +157,8 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(jLabel2))
                 .addContainerGap(50, Short.MAX_VALUE))
         );
+
+        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -231,14 +234,33 @@ public class Main extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    public int autoNumTiquete(){
+        numeroTiquete++;
+       return numeroTiquete;
+    }
+    
+    public int prioridad(){
+        int numeroPrioridad=0;
+        if (cbPrioridad.getSelectedItem().toString().equals("Mayor de edad")) {
+            numeroPrioridad = 1;
+        }else if (cbPrioridad.getSelectedItem().toString().equals("Embarazada")) {
+            numeroPrioridad = 2;
+        }else if (cbPrioridad.getSelectedItem().toString().equals("Discapacitado")) {
+            numeroPrioridad = 3;
+        }else{
+            numeroPrioridad = 4;
+        }
+        return numeroPrioridad;
+    }
+    
     private void btnMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnMostrarActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         // TODO add your handling code here:
-        cola.agregar(Integer.parseInt(txtNumero.getText()), txtCedula.getText(),txtServicio.getText(), Integer.parseInt(cbPrioridad.getSelectedItem().toString()));
+        cola.agregar(autoNumTiquete(), txtCedula.getText(), txtServicio.getText(), prioridad());
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void txtNumeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumeroActionPerformed
