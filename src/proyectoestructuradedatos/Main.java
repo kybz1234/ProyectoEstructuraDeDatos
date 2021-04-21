@@ -78,7 +78,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
-        cbPrioridad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mayor de edad", "Embarazada", "Discapacitado" }));
+        cbPrioridad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Adulto mayor", "Embarazada/Discapacitado", "Estandar" }));
 
         btnEliminar.setText("Eliminar");
         btnEliminar.setToolTipText("");
@@ -242,14 +242,12 @@ public class Main extends javax.swing.JFrame {
     
     public int prioridad(){
         int numeroPrioridad=0;
-        if (cbPrioridad.getSelectedItem().toString().equals("Mayor de edad")) {
+        if (cbPrioridad.getSelectedItem().toString().equals("Adulto mayor")) {
             numeroPrioridad = 1;
-        }else if (cbPrioridad.getSelectedItem().toString().equals("Embarazada")) {
+        }else if (cbPrioridad.getSelectedItem().toString().equals("Embarazada/Discapacitado")) {
             numeroPrioridad = 2;
-        }else if (cbPrioridad.getSelectedItem().toString().equals("Discapacitado")) {
-            numeroPrioridad = 3;
         }else{
-            numeroPrioridad = 4;
+            numeroPrioridad = 3;
         }
         return numeroPrioridad;
     }

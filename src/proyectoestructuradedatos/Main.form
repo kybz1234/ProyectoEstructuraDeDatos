@@ -155,9 +155,9 @@
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="3">
-                    <StringItem index="0" value="Mayor de edad"/>
-                    <StringItem index="1" value="Embarazada"/>
-                    <StringItem index="2" value="Discapacitado"/>
+                    <StringItem index="0" value="Adulto mayor"/>
+                    <StringItem index="1" value="Embarazada/Discapacitado"/>
+                    <StringItem index="2" value="Estandar"/>
                   </StringArray>
                 </Property>
               </Properties>
