@@ -12,18 +12,20 @@ package proyectoestructuradedatos;
  */
 public class NodoLC {
 
-    public int cedula;
+    public String cedula;
     public int tiquete;
-    public int servicio;
+    public String servicio;
     public int prioridad;
     public NodoLC siguiente;
 
-    public NodoLC(int cedula, int tiquete, int servicio, int prioridad) {
+    public NodoLC(String cedula, int tiquete, String servicio, int prioridad) {
         this.cedula = cedula;
         this.tiquete = tiquete;
         this.servicio = servicio;
         this.prioridad = prioridad;
     }
+
+
     
     
     

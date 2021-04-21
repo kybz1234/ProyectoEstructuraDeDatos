@@ -23,6 +23,51 @@ public class ListaCircularSimple {
         
     }
     
+    
+    //By Dylan
+    
+    TiqueteCola cola = new TiqueteCola();
+    
+    public void agregar(String cedula, int numero, String servicio, int prioridad) {
+        //Modifica agregar: Hay que actualizar el último nodo.
+        NodoLC nuevo = new NodoLC(cedula, numero, servicio, prioridad);
+        if (vacia()) {
+            cabeza = nuevo;
+            nuevo.siguiente = cabeza;
+        } else {
+            NodoLC temporal = cabeza;
+            //Último no apunta a siguiente null
+            while (temporal.siguiente != cabeza) {
+                temporal = temporal.siguiente;
+            }
+            temporal.siguiente = nuevo;
+            //actualiza cabeza
+            nuevo.siguiente = cabeza;
+        }
+    }
+    
+    public String mostrar() {
+        String lista = "";
+
+        if (vacia()) {
+            lista = "Vacía";
+        } else {
+            NodoLC temporal = cabeza;
+
+            do {
+                lista += temporal.tiquete + " - ";
+                temporal = temporal.siguiente;
+            } while (temporal != cabeza);//mientras no vuelva a la cabeza
+
+            lista += " FIN";
+        }
+
+        return lista;
+    }
+    
+    //End Dylan
+    
+    
     public NodoLC buscar (int tiquete){
         
         NodoLC resultado = null ;

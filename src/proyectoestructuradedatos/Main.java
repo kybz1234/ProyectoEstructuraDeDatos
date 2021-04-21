@@ -11,6 +11,7 @@ package proyectoestructuradedatos;
  */
 public class Main extends javax.swing.JFrame {
     TiqueteCola cola = new TiqueteCola();
+    ListaCircularSimple lista = new ListaCircularSimple();
     int numeroTiquete= 0;
     /**
      * Creates new form Main
@@ -147,6 +148,11 @@ public class Main extends javax.swing.JFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Modulo2");
 
@@ -297,6 +303,37 @@ public class Main extends javax.swing.JFrame {
         cola.eliminar(null, null, Integer.parseInt(txtNumero.getText()));
         actualizarTextAreaCola();
     }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        // TODO add your handling code here:
+        for (int i = 1; i < 4; i++) {
+            boolean ejecuta = true;
+        int contador = 0;
+        while (ejecuta) {    
+            if (cola.extraeData(ejecuta, contador)!=null) {
+                if (cola.extraeData(ejecuta, contador).getTiquete().getPrioridad()==i) {
+                lista.agregar(cola.extraeData(ejecuta, contador).getTiquete().getCedula(), cola.extraeData(ejecuta, contador).getTiquete().getNumeroTiquete(), 
+                cola.extraeData(ejecuta, contador).getTiquete().getTipoServicio(), cola.extraeData(ejecuta, contador).getTiquete().getPrioridad());
+                }
+                contador++;
+            }else{
+                ejecuta = false;
+            }
+        }
+        }
+        /*boolean ejecuta = true;
+        int contador = 0;
+        while (ejecuta) {    
+            if (cola.extraeData(ejecuta, contador)!=null) {
+                lista.agregar(cola.extraeData(ejecuta, contador).getTiquete().getCedula(), cola.extraeData(ejecuta, contador).getTiquete().getNumeroTiquete(), 
+                cola.extraeData(ejecuta, contador).getTiquete().getTipoServicio(), cola.extraeData(ejecuta, contador).getTiquete().getPrioridad());
+                contador++;
+            }else{
+                ejecuta = false;
+            }
+        }*/
+        System.out.println(lista.mostrar());
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
     /**
      * @param args the command line arguments

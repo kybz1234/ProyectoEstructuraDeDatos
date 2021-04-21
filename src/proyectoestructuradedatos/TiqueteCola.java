@@ -72,6 +72,25 @@ public class TiqueteCola {
             return cola;
         }
     }
+    //By Dylan
+    public NodoCola extraeData(boolean continuar, int contador){
+        NodoCola extrae = null;
+        if (continuar) {
+            if (contador == 0) {
+                extrae = inicio;
+            }else{
+                extrae = inicio;
+                for (int i = 0; i < contador; i++) {
+                    extrae = extrae.getSiguiente();
+                }                
+            }
+        }else{
+            extrae = null;
+        }        
+        return extrae;
+    }
+    
+    //End Dylan
     
     public void vaciarCola() {
         NodoCola actual = inicio;
@@ -91,5 +110,6 @@ public class TiqueteCola {
             }
         }
     }
-
+    
+    
 }
