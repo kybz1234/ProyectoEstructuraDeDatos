@@ -11,11 +11,15 @@ package proyectoestructuradedatos;
  */
 public class Tiquete {
     private int numeroTiquete;
+    private String cedula;
     private String tipoServicio;
+    private int prioridad;
 
-    public Tiquete(int numeroTiquete, String tipoServicio) {
+    public Tiquete(int numeroTiquete, String cedula, String tipoServicio, int prioridad) {
         this.numeroTiquete = numeroTiquete;
+        this.cedula = cedula;
         this.tipoServicio = tipoServicio;
+        this.prioridad = prioridad;
     }
 
     public int getNumeroTiquete() {
@@ -26,6 +30,14 @@ public class Tiquete {
         this.numeroTiquete = numeroTiquete;
     }
 
+    public String getCedula() {
+        return cedula;
+    }
+
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
+    }
+
     public String getTipoServicio() {
         return tipoServicio;
     }
@@ -33,6 +45,16 @@ public class Tiquete {
     public void setTipoServicio(String tipoServicio) {
         this.tipoServicio = tipoServicio;
     }
+
+    public int getPrioridad() {
+        return prioridad;
+    }
+
+    public void setPrioridad(int prioridad) {
+        this.prioridad = prioridad;
+    }
+
+
     
     
 }
