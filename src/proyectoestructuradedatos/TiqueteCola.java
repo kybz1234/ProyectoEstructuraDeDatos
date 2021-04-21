@@ -73,17 +73,23 @@ public class TiqueteCola {
         }
     }
     
-    public void vaciarCola(){
-        if(vacia()){
-            JOptionPane.showMessageDialog(null, "No hay elementos en la cola");
-        }else{
-            String cola="";
-            NodoCola actual = inicio;
-            while(actual != null){
-                
+    public void vaciarCola() {
+        NodoCola actual = inicio;
+        NodoCola anterior = inicio;
+        if (inicio!= null) {
+            while (actual != null) {                
+                    if (actual == inicio) {
+                        inicio = inicio.getSiguiente();
+                    }else if (actual == fin) {
+                        anterior.setSiguiente(null);
+                        fin = anterior;
+                    }else{
+                        anterior.setSiguiente(actual.getSiguiente());
+                    }
+                anterior = actual;
                 actual = actual.getSiguiente();
             }
         }
     }
-    
+
 }
