@@ -12,7 +12,19 @@ package proyectoestructuradedatos;
 public class Arbol {
 
     NodoArbol raíz;
+    
+    private int cantidadClientes = 0;
+    private ListaCircularSimple clientes[];
 
+    public Arbol(ListaCircularSimple[] Clientes) {
+        this.clientes = Clientes;
+    
+    clientes= new ListaCircularSimple[cantidadClientes];
+    for(int i=0; i < cantidadClientes; i++){
+            clientes[i] = new ListaCircularSimple();}
+           
+        }
+    
     public boolean vacío() {
         return raíz == null;
     }
