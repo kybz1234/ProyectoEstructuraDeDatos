@@ -13,8 +13,15 @@ public class Arbol {
 
     NodoArbol raíz;
     
+    
+    
     private int cantidadClientes = 0;
     private ListaCircularSimple clientes[];
+
+    public Arbol() {
+    }
+    
+    
 
     public Arbol(ListaCircularSimple[] Clientes) {
         this.clientes = Clientes;
@@ -69,5 +76,29 @@ public class Arbol {
                     + mostrarRecursivo(subRaíz.derecho);
         }
         return "";
+    }
+    
+    public void pasaraArbol(ListaCircularSimple lista, NodoArbol nuevoNodo){
+        if (vacío()) {
+            raíz = nuevoNodo;
+        } else {
+  //          pasaraArbolRecursivo(raíz, nuevoNodo);
+        }
+    }
+    
+    public void pasaraArbolRecursivo(ListaCircularSimple lista,NodoArbol subRaiz, NodoArbol nuevoNodo){
+         if (nuevoNodo.dato <= subRaiz.dato) {
+            if (subRaiz.izquierdo == null) {
+                subRaiz.izquierdo = nuevoNodo;
+            } else {
+                agregarRecursivo(subRaiz.izquierdo, nuevoNodo);
+            }
+        } else {
+            if (subRaiz.derecho == null) {
+                subRaiz.derecho = nuevoNodo;
+            } else {
+                agregarRecursivo(subRaiz.derecho, nuevoNodo);
+            }
+        }
     }
 }

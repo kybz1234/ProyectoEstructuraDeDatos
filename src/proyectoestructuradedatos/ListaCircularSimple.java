@@ -13,6 +13,7 @@ package proyectoestructuradedatos;
 public class ListaCircularSimple {
 
     private NodoLC cabeza;
+   
     
     
     public boolean vacia (){
@@ -117,5 +118,5 @@ public class ListaCircularSimple {
         
         
     }
-    
+
 }
