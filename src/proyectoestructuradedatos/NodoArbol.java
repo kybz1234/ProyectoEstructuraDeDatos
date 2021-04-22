@@ -17,6 +17,9 @@ public class NodoArbol {
     public NodoArbol(int dato) {
         this.dato = dato;
     }
+
+    public NodoArbol() {
+    }
     
     
     

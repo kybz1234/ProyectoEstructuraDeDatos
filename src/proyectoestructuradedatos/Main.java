@@ -20,11 +20,12 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Main extends javax.swing.JFrame {
 
-    private String rutaArchivo = "Atención de Clientes.xlsx";
+    private String rutaArchivo = "Atención de Clientes.txt";
 
     TiqueteCola cola = new TiqueteCola();
     ListaCircularSimple lista = new ListaCircularSimple();
     Arbol arbol = new Arbol();
+    NodoCola nc = new NodoCola();
 
     int numeroTiquete = 0;
 
@@ -35,7 +36,7 @@ public class Main extends javax.swing.JFrame {
         initComponents();
     }
 
-    public void Archivo() {
+   /* public void Archivo() {
         File ruta = new File(rutaArchivo);
         try {
             FileReader fi = new FileReader(ruta);
@@ -64,7 +65,7 @@ public class Main extends javax.swing.JFrame {
             mensaje("Error al guardar el archivo", "Mensaje", 0);
         }
     }
-    
+    /*
     
     public void mensaje(String mensaje, String titulo, int msj) {
         JOptionPane.showMessageDialog(null, mensaje, titulo, msj);
@@ -80,10 +81,10 @@ public class Main extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel4 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txtaArbol = new javax.swing.JTextArea();
         jLabel3 = new javax.swing.JLabel();
         btnMostrar = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTextAreaArbol = new javax.swing.JTextArea();
         jPanel3 = new javax.swing.JPanel();
         btnBuscar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
@@ -108,10 +109,6 @@ public class Main extends javax.swing.JFrame {
 
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        txtaArbol.setColumns(20);
-        txtaArbol.setRows(5);
-        jScrollPane1.setViewportView(txtaArbol);
-
         jLabel3.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 1, 18)); // NOI18N
         jLabel3.setText("Modulo 3");
 
@@ -122,6 +119,10 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        jTextAreaArbol.setColumns(20);
+        jTextAreaArbol.setRows(5);
+        jScrollPane3.setViewportView(jTextAreaArbol);
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -131,22 +132,22 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addComponent(btnMostrar))
-                .addGap(41, 41, 41)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 801, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 816, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnMostrar)
                 .addGap(25, 25, 25))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(18, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -184,21 +185,21 @@ public class Main extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        txtNumero.setText("jTextField1");
+        txtNumero.setToolTipText("Tiquete");
         txtNumero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNumeroActionPerformed(evt);
             }
         });
 
-        txtCedula.setText("jTextField1");
+        txtCedula.setToolTipText("Cédula");
         txtCedula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCedulaActionPerformed(evt);
             }
         });
 
-        txtServicio.setText("jTextField1");
+        txtServicio.setToolTipText("Servicio");
         txtServicio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtServicioActionPerformed(evt);
@@ -246,33 +247,34 @@ public class Main extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1)
-                            .addComponent(btnAgregar)))
+                            .addComponent(btnAgregar)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(txtNumero, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(33, 33, 33)
                         .addComponent(jLabel4)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtServicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cbPrioridad, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(45, 45, 45))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnEliminar)
-                        .addGap(354, 354, 354))
+                        .addGap(218, 218, 218))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtServicio, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                        .addComponent(cbPrioridad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(17, 17, 17))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(25, 25, 25)
                         .addComponent(jLabel5)
-                        .addGap(50, 50, 50)
+                        .addGap(58, 58, 58)
                         .addComponent(jLabel8)
-                        .addGap(93, 93, 93)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel6)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(80, 80, 80))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -319,10 +321,10 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 494, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(55, 55, 55)
-                        .addComponent(jScrollPane2)))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE)))
                 .addGap(19, 19, 19))
         );
         layout.setVerticalGroup(
@@ -367,8 +369,16 @@ public class Main extends javax.swing.JFrame {
         txtaCola.append(cola.mostrar());
     }
 
+    public void actualizarTextAreaArbol() {
+        jTextAreaArbol.setText("");
+        jTextAreaArbol.append(lista.mostrar());
+    }
+    
     private void btnMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarActionPerformed
-        
+    NodoArbol subRaíz = new NodoArbol();
+    NodoArbol nuevoNodo = new NodoArbol();
+        actualizarTextAreaArbol(); 
+    arbol.pasaraArbol(lista,subRaíz, nuevoNodo );
     }//GEN-LAST:event_btnMostrarActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
@@ -397,6 +407,12 @@ public class Main extends javax.swing.JFrame {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
+        /* nc = cola.getInicio();
+        
+        ListaCircularSimple listap = new ListaCircularSimple();
+        
+                listap = cola.moverCola(lista, nc, 1);
+      */
         for (int i = 1; i < 4; i++) {
             boolean ejecuta = true;
             int contador = 0;
@@ -423,8 +439,9 @@ public class Main extends javax.swing.JFrame {
                 ejecuta = false;
             }
         }*/
+      
         System.out.println(lista.mostrar());
-
+        
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     /**
@@ -479,12 +496,12 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTextArea jTextAreaArbol;
     private javax.swing.JTextField txtCedula;
     private javax.swing.JTextField txtNumero;
     private javax.swing.JTextField txtServicio;
-    private javax.swing.JTextArea txtaArbol;
     private javax.swing.JTextArea txtaCola;
     // End of variables declaration//GEN-END:variables
 }

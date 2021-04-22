@@ -13,6 +13,9 @@ package proyectoestructuradedatos;
 public class ListaCircularSimple {
 
     private NodoLC cabeza;
+
+    public ListaCircularSimple() {
+    }
    
     
     
@@ -56,7 +59,7 @@ public class ListaCircularSimple {
             NodoLC temporal = cabeza;
 
             do {
-                lista += temporal.tiquete + " - ";
+                lista += temporal.prioridad + " - " + temporal.tiquete + " - "+ temporal.cedula + " - "+ temporal.servicio + "\n";
                 temporal = temporal.siguiente;
             } while (temporal != cabeza);//mientras no vuelva a la cabeza
 

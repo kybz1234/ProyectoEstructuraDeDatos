@@ -13,6 +13,10 @@ public class NodoCola {
     private Tiquete tiquete;
     private NodoCola siguiente;
 
+    public NodoCola() {
+    }
+
+   
     public NodoCola(int numero,String cedula, String servicio, int prioridad) {
         tiquete = new Tiquete(numero,cedula, servicio, prioridad);
         siguiente = null;
